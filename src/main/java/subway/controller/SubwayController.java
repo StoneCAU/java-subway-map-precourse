@@ -22,6 +22,7 @@ public class SubwayController {
     private String selectMenu() {
         String input = inputView.inputMenu();
         InputValidator.validateMenu(input);
+        outputView.printNewLine();
 
         return input;
     }

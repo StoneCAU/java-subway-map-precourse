@@ -1,6 +1,7 @@
 package subway.view;
 
 public class OutputView {
+    private static final String NEW_LINE = System.lineSeparator();
     private static final String MAIN_TITLE = "## 메인 화면";
     private static final String FIRST_MENU = "1. 역 관리";
     private static final String SECOND_MENU = "2. 노선 관리";
@@ -15,5 +16,12 @@ public class OutputView {
         System.out.println(THIRD_MENU);
         System.out.println(FOURTH_MENU);
         System.out.println(QUIT_MENU);
+        System.out.println(NEW_LINE);
+
+        printNewLine();
+    }
+
+    public void printNewLine() {
+        System.out.println(NEW_LINE);
     }
 }
