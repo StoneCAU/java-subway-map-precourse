@@ -25,14 +25,13 @@ public class Station {
     }
 
     private static void validate(String name) {
-        if (isDuplicate(name)) {
+        if (isDuplicateName(name)) {
             throw new SubwayException(ErrorMessage.DUPLICATE_STATION_NAME);
         }
     }
 
-    private static boolean isDuplicate(String name) {
-        Station station = StationRepository.findByName(name).stream().findFirst().orElse(null);
-
+    private static boolean isDuplicateName(String name) {
+        Station station = StationRepository.findByName(name).orElse(null);
         return station != null;
     }
 
