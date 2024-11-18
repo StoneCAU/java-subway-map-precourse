@@ -22,7 +22,7 @@ public class SetUpManager {
     }
 
     private void initializeStations() {
-        initialStations.forEach(station -> StationRepository.addStation(new Station(station)));
+        initialStations.forEach(station -> StationRepository.addStation(Station.createStation(station)));
     }
 
     private void addLine() {

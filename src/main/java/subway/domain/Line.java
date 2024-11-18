@@ -18,15 +18,15 @@ public class Line {
     }
 
     private void createStations(String upLine, String downLine) {
-        Station upStation = StationRepository.findByName(upLine).orElse(new Station(upLine));
-        Station downStation = StationRepository.findByName(downLine).orElse(new Station(downLine));
+        Station upStation = StationRepository.findByName(upLine).orElse(Station.addLineToStation(name));
+        Station downStation = StationRepository.findByName(downLine).orElse(Station.addLineToStation(name));
 
         stations.add(upStation);
         stations.add(downStation);
     }
 
     public void addStation(String stationName, int index) {
-        Station station = StationRepository.findByName(stationName).orElse(new Station(stationName));
+        Station station = StationRepository.findByName(stationName).orElse(Station.addLineToStation(name));
         stations.add(index, station);
     }
 }
