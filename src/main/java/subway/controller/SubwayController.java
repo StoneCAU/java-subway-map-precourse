@@ -73,6 +73,7 @@ public class SubwayController {
         }
 
         StationRepository.deleteStation(stationName);
+        outputView.printStationDeleteMessage();
     }
 
     private void manageLine() {
