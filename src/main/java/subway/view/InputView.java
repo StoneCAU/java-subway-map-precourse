@@ -5,7 +5,8 @@ import java.util.Scanner;
 public class InputView {
     private final static String NEW_LINE = System.lineSeparator();
     private final static String ASK_MENU = "## 원하는 기능을 선택하세요.";
-    private final static String ASK_STATION = "## 등록할 역 이름을 입력하세요.";
+    private final static String ASK_REGISTER_STATION = "## 등록할 역 이름을 입력하세요.";
+    private final static String ASK_DELETE_STATION = "## 삭제할 역 이름을 입력하세요.";
 
     private final Scanner scanner;
 
@@ -23,11 +24,18 @@ public class InputView {
         return input();
     }
 
-    public String inputStationName() {
+    public String inputRegisterStationName() {
         printNewLine();
-        System.out.println(ASK_STATION);
+        System.out.println(ASK_REGISTER_STATION);
         return input();
     }
+
+    public String inputDeleteStationName() {
+        printNewLine();
+        System.out.println(ASK_DELETE_STATION);
+        return input();
+    }
+
 
     private String input() {
         return scanner.nextLine();
