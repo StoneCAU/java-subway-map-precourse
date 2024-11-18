@@ -21,6 +21,10 @@ public class Line {
         return name;
     }
 
+    public List<Station> getStations() {
+        return stations;
+    }
+
     public void addStation(String stationName, int index) {
         validateIndex(index);
         Station station = StationRepository.findByName(stationName).orElseGet(() ->{
@@ -28,7 +32,7 @@ public class Line {
             StationRepository.addStation(temp);
             return temp;
         });
-        stations.add(index, station);
+        stations.add(index - 1, station);
     }
 
     public void deleteStation(String stationName) {

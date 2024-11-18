@@ -38,6 +38,9 @@ public class OutputView {
     private static final String FIRST_SECTION_MENU = "1. 구간 등록";
     private static final String SECOND_SECTION_MENU = "2. 구간 삭제";
 
+    private static final String SUBWAY_MAP_TITLE = "## 지하철 노선도";
+    private static final String DIVIDER = "---";
+
     private void printNewLine() {
         System.out.printf(NEW_LINE);
     }
@@ -118,5 +121,17 @@ public class OutputView {
     public void printSectionDeleteMessage() {
         printNewLine();
         System.out.println(OUTPUT_PREFIX + SECTION_DELETE_SUCCESS);
+    }
+
+    public void printSubwayMap(List<Line> lines) {
+        printNewLine();
+        System.out.println(OUTPUT_PREFIX + SUBWAY_MAP_TITLE);
+        lines.forEach(line -> {
+            List<Station> stations = line.getStations();
+            System.out.println(OUTPUT_PREFIX + line);
+            System.out.println(OUTPUT_PREFIX + DIVIDER);
+            stations.forEach(station -> System.out.println(OUTPUT_PREFIX + station));
+            printNewLine();
+        });
     }
 }

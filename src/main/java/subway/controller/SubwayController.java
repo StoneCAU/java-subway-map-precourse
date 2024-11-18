@@ -151,6 +151,7 @@ public class SubwayController {
     }
 
     private void printSubwayMap() {
-
+        List<Line> lines = LineRepository.lines();
+        outputView.printSubwayMap(lines);
     }
 }
