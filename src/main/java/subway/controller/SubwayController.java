@@ -87,6 +87,7 @@ public class SubwayController {
         InputValidator.validateSubMenu(input);
 
         if (input.equals("1")) registerLine();
+        if (input.equals("2")) deleteLine();
     }
 
     private void registerLine() {
@@ -102,7 +103,11 @@ public class SubwayController {
     }
 
     private void deleteLine() {
+        String lineName = inputView.inputDeleteLineName();
+        Line line = LineRepository.findLineByName(lineName).orElseThrow(() -> new SubwayException(ErrorMessage.NOT_FOUND_LINE_NAME));
 
+        LineRepository.deleteLineByName(lineName);
+        outputView.printLineDeleteMessage();
     }
 
     private void printAllLines() {
