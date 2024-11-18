@@ -45,7 +45,7 @@ public class SubwayController {
     private void manageStation() {
         outputView.printStationManagementScreen();
         String input = inputView.inputMenu();
-        InputValidator.validateStationMenu(input);
+        InputValidator.validateSubMenu(input);
 
         if (input.equals("1")) registerStation();
         if (input.equals("2")) deleteStation();
@@ -54,7 +54,7 @@ public class SubwayController {
 
     private void registerStation() {
         String stationName = inputView.inputRegisterStationName();
-        InputValidator.validateStationName(stationName);
+        InputValidator.validateNameLength(stationName);
 
         StationRepository.addStation(Station.createStation(stationName));
         outputView.printStationRegisterMessage();
@@ -82,6 +82,30 @@ public class SubwayController {
     }
 
     private void manageLine() {
+        outputView.printLineManagementScreen();
+        String input = inputView.inputMenu();
+        InputValidator.validateSubMenu(input);
+
+        if (input.equals("1")) registerLine();
+    }
+
+    private void registerLine() {
+        String lineName = inputView.inputRegisterLineName();
+        InputValidator.validateNameLength(lineName);
+        Line.validateName(lineName);
+
+        String upStationName = inputView.inputUpStationName();
+        String downStationName = inputView.inputDownStationName();
+
+        LineRepository.addLine(new Line(lineName, upStationName, downStationName));
+        outputView.printLineRegisterMessage();
+    }
+
+    private void deleteLine() {
+
+    }
+
+    private void printAllLines() {
 
     }
 
