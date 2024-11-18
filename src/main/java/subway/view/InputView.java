@@ -60,6 +60,12 @@ public class InputView {
         return input();
     }
 
+    public String inputDeleteLineName() {
+        printNewLine();
+        System.out.println(ASK_DELETE_LINE);
+        return input();
+    }
+
     private String input() {
         return scanner.nextLine();
     }

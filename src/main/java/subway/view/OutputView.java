@@ -83,4 +83,9 @@ public class OutputView {
         printNewLine();
         System.out.println(OUTPUT_PREFIX + LINE_REGISTER_SUCCESS);
     }
+
+    public void printLineDeleteMessage() {
+        printNewLine();
+        System.out.println(OUTPUT_PREFIX + LINE_DELETE_SUCCESS);
+    }
 }

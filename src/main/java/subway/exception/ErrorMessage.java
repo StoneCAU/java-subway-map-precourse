@@ -7,7 +7,8 @@ public enum ErrorMessage {
     NOT_FOUND_STATION_NAME("존재하지 않는 역입니다."),
     REGISTERED_STATION_NAME("노선에 등록된 역은 삭제할 수 없습니다."),
     DUPLICATE_LINE_NAME("이미 존재하는 노선입니다."),
-    DUPLICATE_UPSTATION_AND_DOWNSTATION("상행 종점역과 하행 종점역은 같을 수 없습니다.");
+    DUPLICATE_UPSTATION_AND_DOWNSTATION("상행 종점역과 하행 종점역은 같을 수 없습니다."),
+    NOT_FOUND_LINE_NAME("존재하지 않는 노선입니다.");
 
     private final String message;
 
