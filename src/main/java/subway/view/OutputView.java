@@ -6,9 +6,13 @@ import subway.domain.Station;
 public class OutputView {
     private static final String NEW_LINE = System.lineSeparator();
     private static final String OUTPUT_PREFIX = "[INFO] ";
+    private static final String STATION_LIST_TITLE = "## 역 목록";
+    private static final String LINE_LIST_TITLE = "## 노선 목록";
+    private static final String BACK_PREVIOUS_SCREEN = "B. 돌아가기";
     private static final String STATION_REGISTER_SUCCESS = "지하철 역이 등록되었습니다.";
     private static final String STATION_DELETE_SUCCESS = "지하철 역이 삭제되었습니다.";
-    private static final String STATION_LIST_TITLE = "## 역 목록";
+    private static final String LINE_REGISTER_SUCCESS = "지하철 노선이 등록되었습니다.";
+    private static final String LINE_DELETE_SUCCESS = "지하철 노선이 삭제되었습니다.";
 
     private static final String MAIN_TITLE = "## 메인 화면";
     private static final String FIRST_MAIN_MENU = "1. 역 관리";
@@ -21,9 +25,13 @@ public class OutputView {
     private static final String FIRST_STATION_MENU = "1. 역 등록";
     private static final String SECOND_STATION_MENU = "2. 역 삭제";
     private static final String THIRD_STATION_MENU = "3. 역 조회";
-    private static final String BACK_PREVIOUS_SCREEN = "B. 돌아가기";
 
-    public void printNewLine() {
+    private static final String LINE_TITLE = "## 노선 관리 화면";
+    private static final String FIRST_LINE_MENU = "1. 노선 등록";
+    private static final String SECOND_LINE_MENU = "2. 노선 삭제";
+    private static final String THIRD_LINE_MENU = "3. 노선 조회";
+
+    private void printNewLine() {
         System.out.printf(NEW_LINE);
     }
 
@@ -60,5 +68,19 @@ public class OutputView {
         printNewLine();
         System.out.println(STATION_LIST_TITLE);
         stations.forEach(station -> System.out.println(OUTPUT_PREFIX + station));
+    }
+
+    public void printLineManagementScreen() {
+        printNewLine();
+        System.out.println(LINE_TITLE);
+        System.out.println(FIRST_LINE_MENU);
+        System.out.println(SECOND_LINE_MENU);
+        System.out.println(THIRD_LINE_MENU);
+        System.out.println(BACK_PREVIOUS_SCREEN);
+    }
+
+    public void printLineRegisterMessage() {
+        printNewLine();
+        System.out.println(OUTPUT_PREFIX + LINE_REGISTER_SUCCESS);
     }
 }
