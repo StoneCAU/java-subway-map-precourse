@@ -1,10 +1,14 @@
 package subway.view;
 
+import java.util.List;
+import subway.domain.Station;
+
 public class OutputView {
     private static final String NEW_LINE = System.lineSeparator();
     private static final String OUTPUT_PREFIX = "[INFO] ";
     private static final String STATION_REGISTER_SUCCESS = "지하철 역이 등록되었습니다.";
-    private static final String STATION_DELETE_SUCCESS = "지하철 역이 삭제되었습니다."
+    private static final String STATION_DELETE_SUCCESS = "지하철 역이 삭제되었습니다.";
+    private static final String STATION_LIST_TITLE = "## 역 목록";
 
     private static final String MAIN_TITLE = "## 메인 화면";
     private static final String FIRST_MAIN_MENU = "1. 역 관리";
@@ -50,5 +54,11 @@ public class OutputView {
     public void printStationDeleteMessage() {
         printNewLine();
         System.out.println(OUTPUT_PREFIX + STATION_DELETE_SUCCESS);
+    }
+
+    public void printStations(List<Station> stations) {
+        printNewLine();
+        System.out.println(STATION_LIST_TITLE);
+        stations.forEach(station -> System.out.println(OUTPUT_PREFIX + station));
     }
 }

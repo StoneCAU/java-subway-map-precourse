@@ -48,8 +48,8 @@ public class SubwayController {
         InputValidator.validateStationMenu(input);
 
         if (input.equals("1")) registerStation();
-
         if (input.equals("2")) deleteStation();
+        if (input.equals("3")) printAllStations();
     }
 
     private void registerStation() {
@@ -74,6 +74,11 @@ public class SubwayController {
 
         StationRepository.deleteStation(stationName);
         outputView.printStationDeleteMessage();
+    }
+
+    private void printAllStations() {
+        List<Station> stations = StationRepository.stations();
+        outputView.printStations(stations);
     }
 
     private void manageLine() {

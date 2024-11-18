@@ -35,4 +35,9 @@ public class Station {
 
         return station != null;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
