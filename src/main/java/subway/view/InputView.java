@@ -3,7 +3,9 @@ package subway.view;
 import java.util.Scanner;
 
 public class InputView {
-    private final static String ASK_MENU = "## 원하는 기능을 선택하세요";
+    private final static String NEW_LINE = System.lineSeparator();
+    private final static String ASK_MENU = "## 원하는 기능을 선택하세요.";
+    private final static String ASK_STATION = "## 등록할 역 이름을 입력하세요.";
 
     private final Scanner scanner;
 
@@ -11,8 +13,19 @@ public class InputView {
         this.scanner = scanner;
     }
 
+    private void printNewLine() {
+        System.out.printf(NEW_LINE);
+    }
+
     public String inputMenu() {
+        printNewLine();
         System.out.println(ASK_MENU);
+        return input();
+    }
+
+    public String inputStationName() {
+        printNewLine();
+        System.out.println(ASK_STATION);
         return input();
     }
 
