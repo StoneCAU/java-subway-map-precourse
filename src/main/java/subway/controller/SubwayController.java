@@ -17,15 +17,24 @@ public class SubwayController {
     }
 
     public void run() {
-        outputView.printMainScreen();
-        selectMenu();
+        String select;
+
+        do {
+            outputView.printMainScreen();
+            select = selectMenu();
+        } while (!select.equals("Q"));
     }
 
-    private void selectMenu() {
+    private String selectMenu() {
         String input = inputView.inputMenu();
         InputValidator.validateMainMenu(input);
 
         if (input.equals("1")) manageStation();
+        if (input.equals("2")) manageLine();
+        if (input.equals("3")) manageStation();
+        if (input.equals("4")) printSubwayMap();
+
+        return input;
     }
 
     private void manageStation() {
@@ -40,7 +49,19 @@ public class SubwayController {
         String stationName = inputView.inputStationName();
         InputValidator.validateStationName(stationName);
 
-        StationRepository.addStation(new Station(stationName));
+        StationRepository.addStation(Station.createStation(stationName));
         outputView.printStationRegisterMessage();
+    }
+
+    private void manageLine() {
+
+    }
+
+    private void manageSection() {
+
+    }
+
+    private void printSubwayMap() {
+
     }
 }

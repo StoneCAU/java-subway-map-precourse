@@ -23,6 +23,7 @@ public class OutputView {
     }
 
     public void printMainScreen() {
+        printNewLine();
         System.out.println(MAIN_TITLE);
         System.out.println(FIRST_MAIN_MENU);
         System.out.println(SECOND_MAIN_MENU);
