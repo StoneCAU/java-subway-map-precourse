@@ -13,14 +13,14 @@ public class InputValidator {
         isNumber(input);
     }
 
-    public static void validateStationMenu(String input) {
+    public static void validateSubMenu(String input) {
         if (isBackMenu(input)) return;
         isNumber(input);
     }
 
-    public static void validateStationName(String input) {
+    public static void validateNameLength(String input) {
         if (!isValidLength(input)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_STATION_NAME_LENGTH.getMessage());
+            throw new SubwayException(ErrorMessage.INVALID_STATION_NAME_LENGTH);
         }
     }
 
