@@ -1,5 +1,7 @@
 package subway.controller;
 
+import subway.domain.Station;
+import subway.repository.StationRepository;
 import subway.validator.InputValidator;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -16,14 +18,29 @@ public class SubwayController {
 
     public void run() {
         outputView.printMainScreen();
-        String menu = selectMenu();
+        selectMenu();
     }
 
-    private String selectMenu() {
+    private void selectMenu() {
         String input = inputView.inputMenu();
-        InputValidator.validateMenu(input);
-        outputView.printNewLine();
+        InputValidator.validateMainMenu(input);
 
-        return input;
+        if (input.equals("1")) manageStation();
+    }
+
+    private void manageStation() {
+        outputView.printStationManagementScreen();
+        String input = inputView.inputMenu();
+        InputValidator.validateStationMenu(input);
+
+        if (input.equals("1")) registerStation();
+    }
+
+    private void registerStation() {
+        String stationName = inputView.inputStationName();
+        InputValidator.validateStationName(stationName);
+
+        StationRepository.addStation(new Station(stationName));
+        outputView.printStationRegisterMessage();
     }
 }
