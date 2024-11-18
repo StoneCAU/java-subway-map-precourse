@@ -22,18 +22,27 @@ public class SubwayController {
     }
 
     public void run() {
-        String select;
-
-        do {
-            outputView.printMainScreen();
-            select = selectMenu();
-        } while (!select.equals("Q"));
+        outputView.printMainScreen();
+        selectMenu();
     }
 
-    private String selectMenu() {
-        String input = inputView.inputMenu();
-        InputValidator.validateMainMenu(input);
+    private void selectMenu() {
+        String select = "temp";
 
+        while (true) {
+            if (select.equals("Q")) return;
+            try {
+                String input = inputView.inputMenu();
+                InputValidator.validateMainMenu(input);
+
+                select = executeMainMenu(input);
+            } catch (SubwayException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private String executeMainMenu(String input) {
         if (input.equals("1")) manageStation();
         if (input.equals("2")) manageLine();
         if (input.equals("3")) manageSection();
@@ -43,13 +52,24 @@ public class SubwayController {
     }
 
     private void manageStation() {
-        outputView.printStationManagementScreen();
-        String input = inputView.inputMenu();
-        InputValidator.validateSubMenu(input,3);
+        while (true) {
+            try {
+                outputView.printStationManagementScreen();
+                String input = inputView.inputMenu();
+                InputValidator.validateSubMenu(input, 3);
 
+                executeManageStation(input);
+            } catch (SubwayException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private void executeManageStation(String input) {
         if (input.equals("1")) registerStation();
         if (input.equals("2")) deleteStation();
         if (input.equals("3")) printAllStations();
+        if (input.equals("B")) run();
     }
 
     private void registerStation() {
@@ -81,13 +101,24 @@ public class SubwayController {
     }
 
     private void manageLine() {
-        outputView.printLineManagementScreen();
-        String input = inputView.inputMenu();
-        InputValidator.validateSubMenu(input,3);
+        while (true){
+            try {
+                outputView.printLineManagementScreen();
+                String input = inputView.inputMenu();
+                InputValidator.validateSubMenu(input, 3);
 
+                executeManageLine(input);
+            } catch (SubwayException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private void executeManageLine(String input) {
         if (input.equals("1")) registerLine();
         if (input.equals("2")) deleteLine();
         if (input.equals("3")) printAllLines();
+        if (input.equals("B")) run();
     }
 
     private void registerLine() {
@@ -116,12 +147,23 @@ public class SubwayController {
     }
 
     private void manageSection() {
-        outputView.printSectionManagementScreen();
-        String input = inputView.inputMenu();
-        InputValidator.validateSubMenu(input,2);
+        while (true) {
+            try {
+                outputView.printSectionManagementScreen();
+                String input = inputView.inputMenu();
+                InputValidator.validateSubMenu(input, 2);
 
+                executeManageSection(input);
+            } catch (SubwayException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private void executeManageSection(String input) {
         if (input.equals("1")) registerSection();
         if (input.equals("2")) deleteSection();
+        if (input.equals("B")) run();
     }
 
     private void registerSection() {

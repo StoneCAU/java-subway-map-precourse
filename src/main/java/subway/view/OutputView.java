@@ -134,4 +134,9 @@ public class OutputView {
             printNewLine();
         });
     }
+
+    public void printErrorMessage(String message) {
+        printNewLine();
+        System.out.println(message);
+    }
 }
