@@ -31,6 +31,13 @@ public class Line {
         stations.add(index, station);
     }
 
+    public void deleteStation(String stationName) {
+        validateStationNumber();
+        Station station = StationRepository.findByName(stationName).orElseThrow(() -> new SubwayException(ErrorMessage.NOT_FOUND_STATION_NAME));
+        validateContainsStation(station);
+        stations.remove(station);
+    }
+
     public boolean containsStation(String stationName) {
         Station station = StationRepository.findByName(stationName).orElse(null);
         if (station != null) {
@@ -45,9 +52,21 @@ public class Line {
         }
     }
 
-    public void validateIndex(int index) {
+    private void validateIndex(int index) {
         if (indexIsGreaterThanStationNumber(index)) {
             throw new SubwayException(ErrorMessage.INDEX_IS_BIGGER_THAN_STATIONS_SIZE);
+        }
+    }
+
+    private void validateStationNumber() {
+        if (stationNumberIsStorage()) {
+            throw new SubwayException(ErrorMessage.STATION_NUMBER_IS_STORAGE);
+        }
+    }
+
+    private void validateContainsStation(Station station) {
+        if (!lineContainsStation(station)) {
+            throw new SubwayException(ErrorMessage.LINE_NOT_CONTAINS_STATION);
         }
     }
 
@@ -84,6 +103,14 @@ public class Line {
 
     private boolean indexIsGreaterThanStationNumber(int index) {
         return index > stations.size();
+    }
+
+    private boolean stationNumberIsStorage() {
+        return stations.size() <= 2;
+    }
+
+    private boolean lineContainsStation(Station station) {
+        return stations.contains(station);
     }
 
     @Override

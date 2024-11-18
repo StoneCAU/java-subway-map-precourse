@@ -62,8 +62,7 @@ public class SubwayController {
 
     private void deleteStation() {
         String stationName = inputView.inputDeleteStationName();
-        Station station = StationRepository.findByName(stationName)
-                .orElseThrow(() -> new SubwayException(ErrorMessage.NOT_FOUND_STATION_NAME));
+        Station station = StationRepository.findByName(stationName).orElseThrow(() -> new SubwayException(ErrorMessage.NOT_FOUND_STATION_NAME));
         List<Line> lines = LineRepository.lines();
 
         for (Line line : lines) {
@@ -141,7 +140,14 @@ public class SubwayController {
     }
 
     private void deleteSection() {
+        String lineName = inputView.inputDeleteSectionLineName();
+        Line line = LineRepository.findLineByName(lineName).orElseThrow(() -> new SubwayException(ErrorMessage.NOT_FOUND_LINE_NAME));
 
+        String stationName = inputView.inputDeleteSectionStationName();
+        Station station = StationRepository.findByName(stationName).orElseThrow(() -> new SubwayException(ErrorMessage.NOT_FOUND_STATION_NAME));
+
+        line.deleteStation(stationName);
+        outputView.printSectionDeleteMessage();
     }
 
     private void printSubwayMap() {

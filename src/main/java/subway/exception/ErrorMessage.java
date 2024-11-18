@@ -11,7 +11,9 @@ public enum ErrorMessage {
     NOT_FOUND_LINE_NAME("존재하지 않는 노선입니다."),
     INDEX_IS_NOT_NUMBER("순서는 숫자만 입력 가능합니다."),
     INDEX_IS_SMALL_THAN_ZERO("순서는 0보다 커야합니다."),
-    INDEX_IS_BIGGER_THAN_STATIONS_SIZE("순서는 노선의 역 개수보다 클 수 없습니다.");
+    INDEX_IS_BIGGER_THAN_STATIONS_SIZE("순서는 노선의 역 개수보다 클 수 없습니다."),
+    STATION_NUMBER_IS_STORAGE("노선에는 최소 2개의 역이 존재해야 합니다."),
+    LINE_NOT_CONTAINS_STATION("해당 노선에 존재하지 않는 역입니다.");
 
     private final String message;
 
