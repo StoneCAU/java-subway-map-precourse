@@ -88,6 +88,7 @@ public class SubwayController {
 
         if (input.equals("1")) registerLine();
         if (input.equals("2")) deleteLine();
+        if (input.equals("3")) printAllLines();
     }
 
     private void registerLine() {
@@ -111,7 +112,8 @@ public class SubwayController {
     }
 
     private void printAllLines() {
-
+        List<Line> lines = LineRepository.lines();
+        outputView.printLines(lines);
     }
 
     private void manageSection() {

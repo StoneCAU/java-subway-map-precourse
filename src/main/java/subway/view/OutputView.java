@@ -1,6 +1,7 @@
 package subway.view;
 
 import java.util.List;
+import subway.domain.Line;
 import subway.domain.Station;
 
 public class OutputView {
@@ -87,5 +88,11 @@ public class OutputView {
     public void printLineDeleteMessage() {
         printNewLine();
         System.out.println(OUTPUT_PREFIX + LINE_DELETE_SUCCESS);
+    }
+
+    public void printLines(List<Line> lines) {
+        printNewLine();
+        System.out.println(LINE_LIST_TITLE);
+        lines.forEach(line -> System.out.println(OUTPUT_PREFIX + line));
     }
 }

@@ -70,4 +70,9 @@ public class Line {
     private static boolean isDuplicateUpStationAndDownStation(String upStationName, String downStationName) {
         return upStationName.equals(downStationName);
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
