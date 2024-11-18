@@ -1,6 +1,11 @@
 package subway.controller;
 
+import java.util.List;
+import subway.domain.Line;
 import subway.domain.Station;
+import subway.exception.ErrorMessage;
+import subway.exception.SubwayException;
+import subway.repository.LineRepository;
 import subway.repository.StationRepository;
 import subway.validator.InputValidator;
 import subway.view.InputView;
@@ -43,14 +48,31 @@ public class SubwayController {
         InputValidator.validateStationMenu(input);
 
         if (input.equals("1")) registerStation();
+
+        if (input.equals("2")) deleteStation();
     }
 
     private void registerStation() {
-        String stationName = inputView.inputStationName();
+        String stationName = inputView.inputRegisterStationName();
         InputValidator.validateStationName(stationName);
 
         StationRepository.addStation(Station.createStation(stationName));
         outputView.printStationRegisterMessage();
+    }
+
+    private void deleteStation() {
+        String stationName = inputView.inputDeleteStationName();
+        Station station = StationRepository.findByName(stationName)
+                .orElseThrow(() -> new SubwayException(ErrorMessage.NOT_FOUND_STATION_NAME));
+        List<Line> lines = LineRepository.lines();
+
+        for (Line line : lines) {
+            if (line.containsStation(stationName)) {
+                throw new SubwayException(ErrorMessage.REGISTERED_STATION_NAME);
+            }
+        }
+
+        StationRepository.deleteStation(stationName);
     }
 
     private void manageLine() {

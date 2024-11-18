@@ -29,4 +29,12 @@ public class Line {
         Station station = StationRepository.findByName(stationName).orElse(Station.addLineToStation(name));
         stations.add(index, station);
     }
+
+    public boolean containsStation(String stationName) {
+        Station station = StationRepository.findByName(stationName).orElse(null);
+        if (station != null) {
+            return stations.contains(station);
+        }
+        return false;
+    }
 }
