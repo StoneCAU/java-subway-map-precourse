@@ -22,7 +22,12 @@ public class Line {
     }
 
     public void addStation(String stationName, int index) {
-        Station station = StationRepository.findByName(stationName).orElse(Station.addLineToStation(name));
+        validateIndex(index);
+        Station station = StationRepository.findByName(stationName).orElseGet(() ->{
+            Station temp = Station.addLineToStation(stationName);
+            StationRepository.addStation(temp);
+            return temp;
+        });
         stations.add(index, station);
     }
 
@@ -40,7 +45,13 @@ public class Line {
         }
     }
 
-    public static void validateDuplicate(String upStationName, String downStationName) {
+    public void validateIndex(int index) {
+        if (indexIsGreaterThanStationNumber(index)) {
+            throw new SubwayException(ErrorMessage.INDEX_IS_BIGGER_THAN_STATIONS_SIZE);
+        }
+    }
+
+    private void validateDuplicate(String upStationName, String downStationName) {
         if (isDuplicateUpStationAndDownStation(upStationName, downStationName)) {
             throw new SubwayException(ErrorMessage.DUPLICATE_UPSTATION_AND_DOWNSTATION);
         }
@@ -67,8 +78,12 @@ public class Line {
         return line != null;
     }
 
-    private static boolean isDuplicateUpStationAndDownStation(String upStationName, String downStationName) {
+    private boolean isDuplicateUpStationAndDownStation(String upStationName, String downStationName) {
         return upStationName.equals(downStationName);
+    }
+
+    private boolean indexIsGreaterThanStationNumber(int index) {
+        return index > stations.size();
     }
 
     @Override

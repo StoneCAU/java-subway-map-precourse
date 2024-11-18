@@ -36,7 +36,7 @@ public class SubwayController {
 
         if (input.equals("1")) manageStation();
         if (input.equals("2")) manageLine();
-        if (input.equals("3")) manageStation();
+        if (input.equals("3")) manageSection();
         if (input.equals("4")) printSubwayMap();
 
         return input;
@@ -45,7 +45,7 @@ public class SubwayController {
     private void manageStation() {
         outputView.printStationManagementScreen();
         String input = inputView.inputMenu();
-        InputValidator.validateSubMenu(input);
+        InputValidator.validateSubMenu(input,3);
 
         if (input.equals("1")) registerStation();
         if (input.equals("2")) deleteStation();
@@ -84,7 +84,7 @@ public class SubwayController {
     private void manageLine() {
         outputView.printLineManagementScreen();
         String input = inputView.inputMenu();
-        InputValidator.validateSubMenu(input);
+        InputValidator.validateSubMenu(input,3);
 
         if (input.equals("1")) registerLine();
         if (input.equals("2")) deleteLine();
@@ -117,6 +117,30 @@ public class SubwayController {
     }
 
     private void manageSection() {
+        outputView.printSectionManagementScreen();
+        String input = inputView.inputMenu();
+        InputValidator.validateSubMenu(input,2);
+
+        if (input.equals("1")) registerSection();
+        if (input.equals("2")) deleteSection();
+    }
+
+    private void registerSection() {
+        String lineName = inputView.inputRegisterSectionLineName();
+        Line line = LineRepository.findLineByName(lineName).orElseThrow(() -> new SubwayException(ErrorMessage.NOT_FOUND_LINE_NAME));
+
+        String stationName = inputView.inputRegisterSectionStationName();
+        Station station = StationRepository.findByName(stationName).orElse(null);
+        if (station != null) throw new SubwayException(ErrorMessage.DUPLICATE_STATION_NAME);
+
+        String index = inputView.inputRegisterSectionIndex();
+        InputValidator.validateIndex(index);
+
+        line.addStation(stationName, Integer.parseInt(index));
+        outputView.printSectionRegisterMessage();
+    }
+
+    private void deleteSection() {
 
     }
 

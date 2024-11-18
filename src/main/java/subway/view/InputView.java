@@ -14,6 +14,12 @@ public class InputView {
     private final static String ASK_REGISTER_DOWNSTATION = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
     private final static String ASK_DELETE_LINE = "## 삭제할 노선의 이름을 입력하세요.";
 
+    private final static String ASK_REGISTER_SECTION_LINE = "## 노선을 입력하세요.";
+    private final static String ASK_REGISTER_SECTION_STATION = "## 역이름을 입력하세요.";
+    private final static String ASK_SECTION_INDEX = "## 순서를 입력하세요.";
+    private final static String ASK_DELETE_SECTION_LINE = "## 삭제할 구간의 노선을 입력하세요.";
+    private final static String ASK_DELETE_SECTION_STATION = "## 삭제할 구간의 역을 입력하세요.";
+
     private final Scanner scanner;
 
     public InputView(Scanner scanner) {
@@ -63,6 +69,36 @@ public class InputView {
     public String inputDeleteLineName() {
         printNewLine();
         System.out.println(ASK_DELETE_LINE);
+        return input();
+    }
+
+    public String inputRegisterSectionLineName() {
+        printNewLine();
+        System.out.println(ASK_REGISTER_SECTION_LINE);
+        return input();
+    }
+
+    public String inputRegisterSectionStationName() {
+        printNewLine();
+        System.out.println(ASK_REGISTER_SECTION_STATION);
+        return input();
+    }
+
+    public String inputRegisterSectionIndex() {
+        printNewLine();
+        System.out.println(ASK_SECTION_INDEX);
+        return input();
+    }
+
+    public String inputDeleteSectionLineName() {
+        printNewLine();
+        System.out.println(ASK_DELETE_SECTION_LINE);
+        return input();
+    }
+
+    public String inputDeleteSectionStationName() {
+        printNewLine();
+        System.out.println(ASK_DELETE_SECTION_STATION);
         return input();
     }
 

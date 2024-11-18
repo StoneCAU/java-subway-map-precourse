@@ -14,6 +14,8 @@ public class OutputView {
     private static final String STATION_DELETE_SUCCESS = "지하철 역이 삭제되었습니다.";
     private static final String LINE_REGISTER_SUCCESS = "지하철 노선이 등록되었습니다.";
     private static final String LINE_DELETE_SUCCESS = "지하철 노선이 삭제되었습니다.";
+    private static final String SECTION_REGISTER_SUCCESS = "구간이 등록되었습니다.";
+    private static final String SECTION_DELETE_SUCCESS = "구간이 삭제되었습니다.";
 
     private static final String MAIN_TITLE = "## 메인 화면";
     private static final String FIRST_MAIN_MENU = "1. 역 관리";
@@ -31,6 +33,10 @@ public class OutputView {
     private static final String FIRST_LINE_MENU = "1. 노선 등록";
     private static final String SECOND_LINE_MENU = "2. 노선 삭제";
     private static final String THIRD_LINE_MENU = "3. 노선 조회";
+
+    private static final String SECTION_TITLE = "## 구간 관리 화면";
+    private static final String FIRST_SECTION_MENU = "1. 구간 등록";
+    private static final String SECOND_SECTION_MENU = "2. 구간 삭제";
 
     private void printNewLine() {
         System.out.printf(NEW_LINE);
@@ -94,5 +100,23 @@ public class OutputView {
         printNewLine();
         System.out.println(LINE_LIST_TITLE);
         lines.forEach(line -> System.out.println(OUTPUT_PREFIX + line));
+    }
+
+    public void printSectionManagementScreen() {
+        printNewLine();
+        System.out.println(SECTION_TITLE);
+        System.out.println(FIRST_SECTION_MENU);
+        System.out.println(SECOND_SECTION_MENU);
+        System.out.println(BACK_PREVIOUS_SCREEN);
+    }
+
+    public void printSectionRegisterMessage() {
+        printNewLine();
+        System.out.println(OUTPUT_PREFIX + SECTION_REGISTER_SUCCESS);
+    }
+
+    public void printSectionDeleteMessage() {
+        printNewLine();
+        System.out.println(OUTPUT_PREFIX + SECTION_DELETE_SUCCESS);
     }
 }
