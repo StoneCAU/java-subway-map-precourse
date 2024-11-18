@@ -2,6 +2,7 @@ package subway;
 
 import java.util.Scanner;
 import subway.controller.SubwayController;
+import subway.domain.SetUpManager;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -16,6 +17,9 @@ public class Application {
 
     private static void start(InputView inputView, OutputView outputView) {
         SubwayController subwayController = new SubwayController(inputView, outputView);
+        SetUpManager setUpManager = new SetUpManager();
+        setUpManager.setUp();
+
         subwayController.run();
     }
 }
